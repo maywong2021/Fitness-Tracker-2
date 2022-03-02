@@ -1,28 +1,21 @@
-import './App.css';
-import { Routes, Route } from 'react-router-dom';
-import {
-  Routines,
-  Activites,
-  Login,
-  Register
-} from './components'
-
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { Activities, ActivityForm } from "./components";
 
 function App() {
   return (
     <div className="App">
-      <nav className='nav'>
-            
-      </nav>
-      
+      <nav className="nav"></nav>
+
       <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/routines" element={<Routines />} />
-        <Route path="/activities" element={<Activites />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        {/* <Route path="/routines" element={<Routines />} /> */}
+        <Route path="/activities" element={<Activities />} />
+        <Route path="/activities/create" element={<ActivityForm />} />
+        {/* <Route path="/login" element={<Login />} /> */}
+        {/* <Route path="/register" element={<Register />} /> */}
       </Routes>
-      <Home />
+      {/* <Home /> */}
     </div>
   );
 }
