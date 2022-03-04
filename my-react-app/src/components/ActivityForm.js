@@ -39,12 +39,15 @@ const ActivityForm = ({ activityInfo }) => {
 
   return (
     <form className="activity-form" onSubmit={handleSubmit}>
-      <h2> {activityInfo ? "Edit Activity" : "Add New Activity"}</h2>
+      <h2 className="p-3 bg-info text-white">
+        {activityInfo ? "Edit Activity" : "Add New Activity"}
+      </h2>
       <div className="form-field">
         <input
           required
           className="form-input"
           value={activity?.name}
+          disabled={activity ? true : false}
           placeholder="Name*"
           onChange={(event) => {
             setActivity({ ...activity, name: event.target.value });

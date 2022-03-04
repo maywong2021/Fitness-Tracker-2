@@ -122,8 +122,13 @@
   border-radius: 10px;
   background-color: white;
   border: 1px solid grey;
-  padding: 10px;
+  padding: 10px 12px;
   margin-bottom: 12px;
+}
+
+.acitivity-card-header {
+  display: flex;
+  align-items: center;
 }
 
 .activity-name {
@@ -133,6 +138,15 @@
 
 .activity-description {
   font-size: 12px;
+}
+
+.routine-list-item {
+  font-size: 12px;
+}
+
+.btn-edit {
+  font-size: 12px;
+  color: white;
 }
 
 @keyframes App-logo-spin {
