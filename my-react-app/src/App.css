@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro&family=Hahmlet&family=M+PLUS+Code+Latin:wght@300&family=Red+Hat+Mono&family=VT323&display=swap');
+
 .App {
   text-align: center;
   height: 100%;
+  font-family: 'Hahmlet', serif;
 }
 
 .App-logo {
@@ -108,6 +111,18 @@
   text-align: center;
   cursor: pointer;
 }
+
+.user-wrapper {
+  display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    padding-bottom: 50px;
+    background-color: lightgray;
+} 
+
 /* End of Form */
 
 .activities-container, 
@@ -195,6 +210,10 @@
   font-size: 12px;
   color: white;
   margin-right: 4px;
+}
+
+h2 {
+
 }
 
 @keyframes App-logo-spin {
