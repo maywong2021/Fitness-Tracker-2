@@ -131,7 +131,7 @@
   flex-flow: column nowrap;
   align-items: center;
   overflow: hidden;
-  height: 100%;
+  height: 96%;
 }
 
 .activities-header,
