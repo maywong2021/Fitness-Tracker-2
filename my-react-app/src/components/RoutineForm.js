@@ -29,7 +29,6 @@ const RoutineForm = ({ routineInfo }) => {
       body,
       displayErrorNotification: true,
     });
-    console.log("routine response", response);
     if (response) {
       navigate(`/${DEFAULT_ACTIVIITES_PATH}`);
     }

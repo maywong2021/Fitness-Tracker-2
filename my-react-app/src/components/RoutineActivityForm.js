@@ -46,8 +46,6 @@ const RoutineActivityForm = ({ routineActivityInfo, routineInfo }) => {
       setToken(token);
     }
     getActivities();
-    console.log("routineInfo", routineInfo);
-    console.log("routine activity", routineActivityInfo);
   }, [routineActivityInfo, routineInfo]);
   return (
     <>
@@ -77,7 +75,6 @@ const RoutineActivityForm = ({ routineActivityInfo, routineInfo }) => {
               className="form-input"
               value={selectedActivity?.name}
               onChange={(e) => {
-                console.log("value", e.target.value);
                 setSelectedActivity(e.target.value);
               }}
             >

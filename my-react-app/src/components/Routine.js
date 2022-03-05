@@ -60,13 +60,11 @@ const Routine = ({
   const navigate = useNavigate();
 
   const navigateToRoutinesByUser = () => {
-    console.log("user click", `/routines/by/${routine.creatorName}`);
     navigate(`/routines/by/${routine.creatorName}`);
   };
 
   const navigateToRoutinesByActivity = (activity) => {
     const { id, name } = activity;
-    console.log("user click", `/routines/by/${id}/${name}`);
     navigate(`/routines/by/${id}/${name}`);
   };
 
