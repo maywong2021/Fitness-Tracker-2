@@ -1,15 +1,25 @@
+
 import './App.css';
 import { useEffect, useState } from "react";
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home.js';
-// import Routines from './components/Routines.js';
-// import Activiites from './components/Activities.js';
+import {
+  Activities,
+  ActivityForm,
+  Routines,
+  Routine,
+  RoutineForm,
+  RoutineActivityForm,
+} from "./components";
 import Login from './components/Login.js';
 import Register from './components/Register.js';
 import { getUser } from './api';
 
 
 function App() {
+ const [selectedActivity, setSelectedActivity] = useState(null);
+  const [selectedRoutine, setSelectedRoutine] = useState(null);
+  const [selectedRoutineActivity, setSelectedRoutineActivity] = useState(null);
 
   const [token, setToken] = useState('');
   console.log('token', token);
@@ -54,12 +64,40 @@ function App() {
       
       <Routes>
         <Route path="/" element={<Home />}/> 
-        {/* <Route path="/routines" element={<Routines />} /> */}
-        {/* <Route path="/my-routines" element={<MyRoutines token={token} setToken={setToken}/>} /> */}
-        {/* <Route path="/activities" element={<Activites />} /> */}
+        <Route
+          path="/routines"
+          element={
+            <Routines
+              setSelectedRoutineActivity={setSelectedRoutineActivity}
+              setSelectedRoutine={setSelectedRoutine}
+            />
+          }
+        />
+        <Route
+          path="/routines/form"
+          element={<RoutineForm routineInfo={selectedRoutine} />}
+        />
+        <Route
+          path="/routine_activities/form"
+          element={
+            <RoutineActivityForm
+              routineInfo={selectedRoutine}
+              routineActivityInfo={selectedRoutineActivity}
+            />
+          }
+        />
+        <Route
+          path="/activities"
+          element={<Activities setSelectedActivity={setSelectedActivity} />}
+        />
+        <Route
+          path="/activities/form"
+          element={<ActivityForm activityInfo={selectedActivity} />}
+        />
         <Route path="/login" element={<Login setToken={setToken}/>} />
         <Route path="/register" element={<Register token={token} setToken={setToken}/>} />
       </Routes>
+
     </div>
   );
 }
