@@ -1,52 +1,40 @@
 import { useEffect, useState } from "react";
-import { callApi } from "../api";
-import { useNavigate } from "react-router";
-import { Routine } from "./";
+import { fetchRoutines } from "../api";
 
-const Routines = ({ setSelectedRoutine, setSelectedRoutineActivity }) => {
-  const [routines, setRoutines] = useState([]);
+const Routines = () => {
 
-  const getRoutines = async () => {
-    const data = await callApi({ url: `routines` });
-    setRoutines(data);
-  };
+    const [routines, setRoutines] = useState([]);
 
-  const navigate = useNavigate();
+    const fetchRoutines = async () => {
+        const fetchedRoutines = await fetchRoutines;
+        setRoutines(fetchedRoutines);
+    }
 
-  useEffect(() => {
-    getRoutines();
-  }, []);
+    useEffect(() => {
+        fetchRoutines();
+    }, [])
 
-  return (
-    <div className="routines-container">
-      <div className="routines-header">
-        <div className="routines-header-title">Routines</div>
-        <div
-          className="btn routines-header-create-btn"
-          onClick={(e) => {
-            console.log("create routine");
-            e.preventDefault();
-
-            setSelectedRoutine(null);
-            navigate("/routines/form");
-          }}
-        >
-          Create New Routines
+    return (
+        <div className="routines">
+            <h2>Routines</h2>
+            {routines.map((routine) => {
+                return(
+                    <>
+                    <div key={routine.id}>
+                    <div>
+                        {routine.name}
+                    </div>
+                    <div>
+                        {routine.goal}
+                    </div>
+                    </div>
+                    </>
+                )
+            })}
         </div>
-      </div>
-      <div className="routine-wrapper">
-        {routines.map((routine) => (
-          <Routine
-            routine={routine}
-            getRoutines={getRoutines}
-            setSelectedRoutine={setSelectedRoutine}
-            setSelectedRoutineActivity={setSelectedRoutineActivity}
-            key={`routine_${routine.id}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
+    )
+
+
+}
 
 export default Routines;
