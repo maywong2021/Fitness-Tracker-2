@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchRoutines } from "../api";
 
+
 const Routines = () => {
 
     const [routines, setRoutines] = useState([]);
@@ -33,8 +34,6 @@ const Routines = () => {
             })}
         </div>
     )
-
-
 }
 
 export default Routines;
