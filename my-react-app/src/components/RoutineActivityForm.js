@@ -19,14 +19,12 @@ const RoutineActivityForm = ({ routineActivityInfo, routineInfo }) => {
       ? `routine_activities/${routineActivity?.routineActivityId}`
       : `routines/${routineInfo.id}/activities`;
     const method = routineActivityInfo ? "patch" : "post";
-    const body = JSON.stringify(
-      routineActivityInfo
-        ? { count: routineActivity.count, duration: routineActivity.duration }
-        : {
-            ...routineActivity,
-            activityId: selectedActivity,
-          }
-    );
+    const body = routineActivityInfo
+      ? { count: routineActivity.count, duration: routineActivity.duration }
+      : {
+          ...routineActivity,
+          activityId: selectedActivity,
+        };
 
     const data = await callApi({ url, method, token, body });
     if (data) {
@@ -43,13 +41,14 @@ const RoutineActivityForm = ({ routineActivityInfo, routineInfo }) => {
     if (routineActivityInfo) {
       setRoutineActivity(routineActivityInfo);
     }
-    const token = localStorage.getItem("TOKEN");
+    const token = localStorage.getItem("token");
     if (token) {
       setToken(token);
     }
     getActivities();
-    console.log(routineInfo);
-  }, []);
+    console.log("routineInfo", routineInfo);
+    console.log("routine activity", routineActivityInfo);
+  }, [routineActivityInfo, routineInfo]);
   return (
     <>
       <h2 className="p-3 bg-info text-white">
@@ -65,7 +64,7 @@ const RoutineActivityForm = ({ routineActivityInfo, routineInfo }) => {
           <label htmlFor="activity" className="form-label">
             {routineActivityInfo
               ? `Selected Activity: ${routineActivityInfo.name}`
-              : "Select Activity"}
+              : "Activity"}
           </label>
         </div>
         <div className="form-field">
@@ -73,6 +72,7 @@ const RoutineActivityForm = ({ routineActivityInfo, routineInfo }) => {
             ""
           ) : (
             <select
+              required
               id="activity"
               className="form-input"
               value={selectedActivity?.name}
@@ -81,6 +81,7 @@ const RoutineActivityForm = ({ routineActivityInfo, routineInfo }) => {
                 setSelectedActivity(e.target.value);
               }}
             >
+              <option key={"placeholder"}>Select Activity </option>
               {activities.map((activity) => (
                 <option key={`${activity?.id}`} value={activity?.id}>
                   {activity?.name}
@@ -97,6 +98,7 @@ const RoutineActivityForm = ({ routineActivityInfo, routineInfo }) => {
         <div className="form-field">
           <input
             id="count"
+            type="number"
             required
             className="form-input"
             value={routineActivity?.count}
@@ -117,6 +119,7 @@ const RoutineActivityForm = ({ routineActivityInfo, routineInfo }) => {
         <div className="form-field">
           <input
             id="duration"
+            type="number"
             className="form-input form-control"
             required
             value={routineActivity?.duration}

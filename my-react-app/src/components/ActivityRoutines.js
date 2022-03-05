@@ -1,7 +1,7 @@
 const ActivityRoutines = ({ routines }) => {
   return (
     <div>
-      <header className="activity-name"> Routines</header>
+      <header className="activity-name">Activity's Routines</header>
       <ul className="list-group">
         {routines?.length
           ? routines.map((routine) => (

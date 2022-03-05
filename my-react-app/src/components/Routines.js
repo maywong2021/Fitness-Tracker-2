@@ -3,7 +3,11 @@ import { callApi } from "../api";
 import { useNavigate } from "react-router";
 import { Routine } from "./";
 
-const Routines = ({ setSelectedRoutine, setSelectedRoutineActivity }) => {
+const Routines = ({
+  setSelectedRoutine,
+  setSelectedRoutineActivity,
+  userInfo,
+}) => {
   const [routines, setRoutines] = useState([]);
 
   const getRoutines = async () => {
@@ -21,22 +25,26 @@ const Routines = ({ setSelectedRoutine, setSelectedRoutineActivity }) => {
     <div className="routines-container">
       <div className="routines-header">
         <div className="routines-header-title">Routines</div>
-        <div
-          className="btn routines-header-create-btn"
-          onClick={(e) => {
-            console.log("create routine");
-            e.preventDefault();
+        {userInfo ? (
+          <div
+            className="btn routines-header-create-btn"
+            onClick={(e) => {
+              e.preventDefault();
 
-            setSelectedRoutine(null);
-            navigate("/routines/form");
-          }}
-        >
-          Create New Routines
-        </div>
+              setSelectedRoutine(null);
+              navigate("/routines/form");
+            }}
+          >
+            Create New Routines
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <div className="routine-wrapper">
         {routines.map((routine) => (
           <Routine
+            userInfo={userInfo}
             routine={routine}
             getRoutines={getRoutines}
             setSelectedRoutine={setSelectedRoutine}
@@ -50,4 +58,3 @@ const Routines = ({ setSelectedRoutine, setSelectedRoutineActivity }) => {
 };
 
 export default Routines;
-

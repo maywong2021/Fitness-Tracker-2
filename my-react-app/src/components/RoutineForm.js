@@ -21,9 +21,16 @@ const RoutineForm = ({ routineInfo }) => {
       : `${DEFAULT_ACTIVIITES_PATH}`;
     const method = routineInfo ? "patch" : "post";
     const { name, goal, isPublic } = routine;
-    const body = JSON.stringify({ name, goal, isPublic });
-    const data = await callApi({ url, method, token, body });
-    if (data) {
+    const body = { name, goal, isPublic };
+    const response = await callApi({
+      url,
+      method,
+      token,
+      body,
+      displayErrorNotification: true,
+    });
+    console.log("routine response", response);
+    if (response) {
       navigate(`/${DEFAULT_ACTIVIITES_PATH}`);
     }
   };
@@ -32,7 +39,7 @@ const RoutineForm = ({ routineInfo }) => {
     if (routineInfo) {
       setRoutine(routineInfo);
     }
-    const token = localStorage.getItem("TOKEN");
+    const token = localStorage.getItem("token");
     if (token) {
       setToken(token);
     }

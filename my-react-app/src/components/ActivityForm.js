@@ -19,8 +19,15 @@ const ActivityForm = ({ activityInfo }) => {
       ? `${DEFAULT_ACTIVIITES_PATH}/${activityInfo.id}`
       : `${DEFAULT_ACTIVIITES_PATH}`;
     const method = activityInfo ? "patch" : "post";
-    const body = JSON.stringify(activity);
-    const data = await callApi({ url, method, token, body });
+    const { name, description } = activity;
+    const body = { name, description };
+    const data = await callApi({
+      url,
+      method,
+      token,
+      body,
+      displayErrorNotification: true,
+    });
     console.log("... ", data);
     if (data) {
       navigate(`/${DEFAULT_ACTIVIITES_PATH}`);
@@ -31,7 +38,7 @@ const ActivityForm = ({ activityInfo }) => {
     if (activityInfo) {
       setActivity(activityInfo);
     }
-    const token = localStorage.getItem("TOKEN");
+    const token = localStorage.getItem("token");
     if (token) {
       setToken(token);
     }
