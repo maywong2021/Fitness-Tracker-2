@@ -43,6 +43,7 @@ const RoutineForm = ({ routineInfo }) => {
       <h2 className="p-3 bg-info text-white">
         {routineInfo ? "Edit Routine" : "Add New Routine"}
       </h2>
+
       <form className="routine-form form-wrapper" onSubmit={handleSubmit}>
         <div className="form-field-label">
           <label htmlFor="name" className="form-label">
@@ -78,9 +79,18 @@ const RoutineForm = ({ routineInfo }) => {
             }}
           />
         </div>
-
         <button className="form-submit-btn" type="submit">
           {routineInfo ? "Save" : "Create"}
+        </button>
+        <button
+          className="btn btn-secondary form-submit-btn mt-3"
+          type="cancel"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/routines");
+          }}
+        >
+          Cancel
         </button>
       </form>
     </>

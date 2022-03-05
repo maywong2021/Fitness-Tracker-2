@@ -132,6 +132,16 @@ const RoutineActivityForm = ({ routineActivityInfo, routineInfo }) => {
         <button className="form-submit-btn" type="submit">
           {routineActivityInfo ? "Save" : "Create"}
         </button>
+        <button
+          className="btn btn-secondary form-submit-btn mt-3"
+          type="cancel"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/routines");
+          }}
+        >
+          Cancel
+        </button>
       </form>
     </>
   );

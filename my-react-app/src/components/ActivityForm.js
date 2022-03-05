@@ -81,6 +81,16 @@ const ActivityForm = ({ activityInfo }) => {
         <button className="form-submit-btn" type="submit">
           {activityInfo ? "Save" : "Create"}
         </button>
+        <button
+          className="btn btn-secondary form-submit-btn mt-3"
+          type="cancel"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/activities");
+          }}
+        >
+          Cancel
+        </button>
       </form>
     </>
   );
