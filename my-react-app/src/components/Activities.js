@@ -37,6 +37,7 @@ const Activities = ({ setSelectedActivity, userInfo }) => {
 
   useEffect(() => {
     getActivities();
+    console.log("userInfo", userInfo);
   }, []);
 
   return (

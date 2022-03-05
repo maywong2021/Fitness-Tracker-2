@@ -10,6 +10,7 @@ import {
   RoutineActivityForm,
   RoutinesByUserName,
   RoutinesByActivity,
+  MyRoutines,
 } from "./components";
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
@@ -93,6 +94,16 @@ function App() {
           path="/routines"
           element={
             <Routines
+              userInfo={user}
+              setSelectedRoutineActivity={setSelectedRoutineActivity}
+              setSelectedRoutine={setSelectedRoutine}
+            />
+          }
+        />
+        <Route
+          path="/my-routines"
+          element={
+            <MyRoutines
               userInfo={user}
               setSelectedRoutineActivity={setSelectedRoutineActivity}
               setSelectedRoutine={setSelectedRoutine}
