@@ -34,13 +34,13 @@ export const login = async (username, password) => {
         const response = await fetch(`${BASE_URL}/users/login`, {
             method: "POST",
             headers: {
-            'Content-Type': 'application/json',
-        },
-            body: JSON.stringify({
+            'Content-Type': 'application/json'
+    },
+        body: JSON.stringify({
                 username,
                 password,
-            })
         })
+      })
       const responseObject  = await response.json();
       console.log("responseObject", responseObject);
       return responseObject;
@@ -51,19 +51,18 @@ export const login = async (username, password) => {
 
 export const register = async (username, password) => {
     const response = await fetch(`${BASE_URL}/users/register`, {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-        },
+          method: "POST",
+          headers: {
+          'Content-Type': 'application/json'
+      },
         body: JSON.stringify({
-        
-            username,
-            password,
-            
-        })
-    })
-    const { token } = await response.json();
-    return token;
+          username,
+          password,
+      })
+  })
+    const responseObject = await response.json();
+    console.log("register", responseObject);
+    return responseObject;
 }
 
 export const getUser = async (token) => {
