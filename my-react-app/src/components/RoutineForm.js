@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { callApi } from "../api";
 
-const DEFAULT_ACTIVIITES_PATH = "activities";
+const DEFAULT_ACTIVIITES_PATH = "routines";
 
-const ActivityForm = ({ activityInfo }) => {
-  const [activity, setActivity] = useState({
+const RoutineForm = ({ routineInfo }) => {
+  const [routine, setRoutine] = useState({
     name: "",
-    description: "",
+    goal: "",
+    isPublic: true,
   });
   const [token, setToken] = useState();
 
@@ -15,34 +16,34 @@ const ActivityForm = ({ activityInfo }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const url = activityInfo
-      ? `${DEFAULT_ACTIVIITES_PATH}/${activityInfo.id}`
+    const url = routineInfo
+      ? `${DEFAULT_ACTIVIITES_PATH}/${routineInfo.id}`
       : `${DEFAULT_ACTIVIITES_PATH}`;
-    const method = activityInfo ? "patch" : "post";
-    const body = JSON.stringify(activity);
+    const method = routineInfo ? "patch" : "post";
+    const { name, goal, isPublic } = routine;
+    const body = JSON.stringify({ name, goal, isPublic });
     const data = await callApi({ url, method, token, body });
-    console.log("... ", data);
     if (data) {
       navigate(`/${DEFAULT_ACTIVIITES_PATH}`);
     }
   };
 
   useEffect(() => {
-    if (activityInfo) {
-      setActivity(activityInfo);
+    if (routineInfo) {
+      setRoutine(routineInfo);
     }
     const token = localStorage.getItem("TOKEN");
     if (token) {
       setToken(token);
     }
-  }, [activityInfo]);
+  }, [routineInfo]);
 
   return (
     <>
       <h2 className="p-3 bg-info text-white">
-        {activityInfo ? "Edit Activity" : "Add New Activity"}
+        {routineInfo ? "Edit Routine" : "Add New Routine"}
       </h2>
-      <form className="activity-form form-wrapper" onSubmit={handleSubmit}>
+      <form className="routine-form form-wrapper" onSubmit={handleSubmit}>
         <div className="form-field-label">
           <label htmlFor="name" className="form-label">
             Name
@@ -50,40 +51,40 @@ const ActivityForm = ({ activityInfo }) => {
         </div>
         <div className="form-field">
           <input
+            id="name"
             required
             className="form-input"
-            value={activity?.name}
-            disabled={activity?.id ? true : false}
+            value={routine?.name}
             placeholder="Name*"
             onChange={(event) => {
-              setActivity({ ...activity, name: event.target.value });
+              setRoutine({ ...routine, name: event.target.value });
             }}
           />
         </div>
         <div className="form-field-label">
-          <label htmlFor="description" className="form-label">
-            Description
+          <label htmlFor="goal" className="form-label">
+            Goal
           </label>
         </div>
         <div className="form-field">
           <input
-            id="description"
+            id="goal"
             className="form-input"
             required
-            value={activity?.description}
-            placeholder="Description*"
+            value={routine?.goal}
+            placeholder="Goal*"
             onChange={(event) => {
-              setActivity({ ...activity, description: event.target.value });
+              setRoutine({ ...routine, goal: event.target.value });
             }}
           />
         </div>
 
         <button className="form-submit-btn" type="submit">
-          {activityInfo ? "Save" : "Create"}
+          {routineInfo ? "Save" : "Create"}
         </button>
       </form>
     </>
   );
 };
 
-export default ActivityForm;
+export default RoutineForm;

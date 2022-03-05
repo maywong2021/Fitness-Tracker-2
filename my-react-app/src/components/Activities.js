@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ActivityRoutines } from ".";
 import { callApi } from "../api";
+import { CardItem } from "./";
 
 const Activities = ({ setSelectedActivity, userInfo }) => {
   const [activities, setActivities] = useState([]);
@@ -66,7 +67,7 @@ const Activities = ({ setSelectedActivity, userInfo }) => {
                 {activity.name}
               </div>
               <div
-                className="btn btn-info btn-edit"
+                className="btn btn-info app-btn"
                 onClick={(e) => {
                   e.preventDefault();
                   setActivityIdForRoutines(activity.id);
@@ -81,9 +82,7 @@ const Activities = ({ setSelectedActivity, userInfo }) => {
             ) : (
               ""
             )}
-            <div className="activity-description mt-2">
-              {activity.description}
-            </div>
+            <CardItem label={"Description"} value={activity.description} />
           </div>
         ))}
       </div>
