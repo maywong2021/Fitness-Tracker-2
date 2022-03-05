@@ -1,3 +1,4 @@
+
 import axios from "axios";
 const BASE_URL = "https://fitnesstrac-kr.herokuapp.com/api/";
 
@@ -25,13 +26,63 @@ export const callApi = async ({ url, method, token, body }) => {
   }
 };
 
-// export const fetchRoutines = async () => {
+export const login = async (username, password) => {
 
-//     try{
-//         const { data } = await axios.get(`${BASE_URL}/routines`);
-//         return data;
+    console.log("username", username);
+    console.log("password", password);
+    try{
+        const response = await fetch(`${BASE_URL}/users/login`, {
+            method: "POST",
+            headers: {
+            'Content-Type': 'application/json',
+        },
+            body: JSON.stringify({
+                username,
+                password,
+            })
+        })
+      const responseObject  = await response.json();
+      console.log("responseObject", responseObject);
+      return responseObject;
+    } catch(error) {
+        throw error;
+    } 
+}
 
-//     } catch(error){
-//         console.error(error);
-//     }
-// }
+export const register = async (username, password) => {
+    const response = await fetch(`${BASE_URL}/users/register`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+        
+            username,
+            password,
+            
+        })
+    })
+    const { token } = await response.json();
+    return token;
+}
+
+export const getUser = async (token) => {
+    try{
+        const response = await fetch(`${BASE_URL}/users/me`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+                },
+            })
+            const { username } = await response.json();
+            return username;
+    } catch(error){
+        console.error(error);
+    }
+}
+
+
+
+
+
+
