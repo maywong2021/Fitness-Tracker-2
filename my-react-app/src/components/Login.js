@@ -27,6 +27,7 @@ const Login = ({ token, setToken, setUser }) => {
   };
 
 
+
     if(!token) {
         return (
         <>
@@ -46,5 +47,6 @@ const Login = ({ token, setToken, setUser }) => {
         )
     } 
 }
+
 
 export default Login;

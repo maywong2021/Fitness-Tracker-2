@@ -41,7 +41,7 @@ const RoutinesByActivity = (props) => {
           <tbody>
             {routines?.map((routine, pos) => (
               <tr className="custom-row" key={`${routine.id}_${pos}`}>
-                <td>{pos}</td>
+                <td>{pos + 1}</td>
                 <td>{routine.name}</td>
                 <td>{routine.goal}</td>
                 <td>{routine.activities?.length}</td>

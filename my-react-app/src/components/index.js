@@ -12,3 +12,4 @@ export { default as RoutineActivityForm } from "./RoutineActivityForm";
 export { default as RoutineForm } from "./RoutineForm";
 export { default as RoutinesByUserName } from "./RoutinesByUserName";
 export { default as RoutinesByActivity } from "./RoutinesByActivity";
+export { default as MyRoutines } from "./MyRoutines";

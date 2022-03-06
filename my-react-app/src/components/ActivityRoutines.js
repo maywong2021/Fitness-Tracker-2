@@ -5,7 +5,10 @@ const ActivityRoutines = ({ routines }) => {
       <ul className="list-group">
         {routines?.length
           ? routines.map((routine) => (
-              <li className="list-group-item routine-list-item">
+              <li
+                className="list-group-item routine-list-item"
+                key={routine.id}
+              >
                 {routine.name}
               </li>
             ))

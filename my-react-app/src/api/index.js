@@ -35,8 +35,6 @@ export const callApi = async ({
 };
 
 export const login = async (username, password) => {
-
-
     console.log("username", username);
     console.log("password", password);
     try{
@@ -73,8 +71,6 @@ export const register = async (username, password) => {
     console.log("register", responseObject);
     return responseObject;
 }
-
-
 
 export const getUser = async (token) => {
   try {
