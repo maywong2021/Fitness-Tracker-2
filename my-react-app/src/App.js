@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home.js";
 import {
+  Login,
+  Register,
   Activities,
   ActivityForm,
   Routines,
@@ -13,8 +15,6 @@ import {
   MyRoutines,
 
 } from "./components";
-import Login from "./components/Login.js";
-import Register from "./components/Register.js";
 import { getUser } from "./api";
 
 function App() {
@@ -87,7 +87,7 @@ function App() {
           </Link>
         )}
       </nav>
-      {token && <h2>Hello, {user?.username}!</h2>}
+      {token? <h2 className="m-5">Hello, {user?.username}!</h2> : <h2> </h2>} 
 
       <Routes>
         <Route path="/" element={<Home />} />
